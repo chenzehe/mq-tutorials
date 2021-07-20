@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mq-tutorials-ch2-list2</artifactId>
+    <artifactId>mq-tutorials-ch3-list5</artifactId>
 
     <dependencies>
         <dependency>
@@ -26,6 +26,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -37,5 +42,4 @@
         <plugins>
         </plugins>
     </build>
-
 </project>

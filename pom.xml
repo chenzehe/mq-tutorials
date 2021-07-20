@@ -9,7 +9,7 @@
         <version>2.1.5.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>org.example</groupId>
+    <groupId>mq.tutorails</groupId>
     <artifactId>mq-tutorials</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -17,7 +17,20 @@
     <modules>
         <module>mq-tutorials-ch2-list2</module>
         <module>mq-tutorials-ch2-list1</module>
+        <module>mq-tutorials-ch3-list5</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+    </dependencies>
 
 </project>
