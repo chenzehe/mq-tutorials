@@ -18,7 +18,7 @@ public class Procuder {
 
     public void sendMessage() {
         String message = "Hello World!";
-        String routingKey = "com.mq.#";
+        String routingKey = "info";
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, routingKey, message);
         log.info("sendMessage finished : " + message);
     }

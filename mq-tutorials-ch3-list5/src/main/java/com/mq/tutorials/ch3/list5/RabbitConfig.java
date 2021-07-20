@@ -26,8 +26,20 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Binding binding(Queue queue, DirectExchange exchange) {
-        String bindingKey = "com.mq.#";
+    public Binding bindingLog(Queue queue, DirectExchange exchange) {
+        String bindingKey = "#";
+        return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
+    }
+
+    @Bean
+    public Binding bindingInfo(Queue queue, DirectExchange exchange) {
+        String bindingKey = "info";
+        return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
+    }
+
+    @Bean
+    public Binding bindingError(Queue queue, DirectExchange exchange) {
+        String bindingKey = "error";
         return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
     }
 
