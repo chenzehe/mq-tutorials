@@ -15,6 +15,7 @@ public class RabbitConfig {
     public static final String QUEUE_NAME = "helloQueue35";
     public static final String EXCHANGE_NAME = "helloExchange35";
 
+
     @Bean
     public Queue queue(){
         return new Queue(QUEUE_NAME);

@@ -18,14 +18,10 @@
         <module>mq-tutorials-ch2-list2</module>
         <module>mq-tutorials-ch2-list1</module>
         <module>mq-tutorials-ch3-list5</module>
+        <module>mq-tutorials-ch3-list52</module>
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>com.rabbitmq</groupId>
-            <artifactId>amqp-client</artifactId>
-            <version>5.7.1</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
