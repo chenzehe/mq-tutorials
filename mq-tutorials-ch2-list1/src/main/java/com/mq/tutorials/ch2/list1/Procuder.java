@@ -1,8 +1,6 @@
 package com.mq.tutorials.ch2.list1;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.*;
 
 public class Procuder {
 
@@ -21,7 +19,7 @@ public class Procuder {
             channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes("UTF-8"));
+            channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
             System.out.println("rabbitmq send message '" + message + "'");
         }catch (Exception e){
             System.out.println("rabbitmq send message error!");

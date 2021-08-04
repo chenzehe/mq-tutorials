@@ -1,9 +1,8 @@
 package com.mq.tutorials.ch2.list1;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
 
 public class Consumer {
 
@@ -21,12 +20,15 @@ public class Consumer {
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-                String message = new String(delivery.getBody(), "UTF-8");
-                System.out.println("rabbitmq Received message '" + message + "'");
+            DefaultConsumer defaultConsumer=new DefaultConsumer(channel) {
+                @Override
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                    String message = new String(body, "UTF-8");
+                    System.out.println("rabbitmq received message, consumerTag = " + consumerTag + ", " +
+                            "properties = " + properties.toString() +", message = " + message);
+                }
             };
-            channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
-
+            channel.basicConsume(QUEUE_NAME, true, defaultConsumer);
             System.in.read();//等待控制台输入退出程序
         }catch (Exception e){
             System.out.println("rabbitmq received message error!");
