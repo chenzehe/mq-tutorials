@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list54;
+package com.mq.tutorials.ch3.list65;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -21,12 +21,9 @@ public class Procuder {
     public void sendMessage() {
         String messageStr = "Hello World!";
         MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setHeader("mq", "rabbitmq");
-        messageProperties.setHeader("language", "erlang");
         messageProperties.setHeader("hello", "hello world!");
         Message message = new Message(messageStr.getBytes(), messageProperties);
-        log.info("sendMessage start : " + message);
-        this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, null, message);
+        this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "hello", message);
         log.info("sendMessage finished : " + message);
     }
 

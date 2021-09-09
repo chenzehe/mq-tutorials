@@ -21,6 +21,7 @@
         <module>mq-tutorials-ch3-list52</module>
         <module>mq-tutorials-ch3-list53</module>
         <module>mq-tutorials-ch3-list54</module>
+        <module>mq-tutorials-ch3-list65</module>
     </modules>
 
     <dependencies>

@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list54;
+package com.mq.tutorials.ch3.list53;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -18,7 +18,7 @@ public class Procuder {
 
     public void sendMessage() {
         String message = "Hello World!";
-        String routingKey = "#";
+        String routingKey = "lazy";
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, routingKey, message);
         log.info("sendMessage finished : " + message);
     }

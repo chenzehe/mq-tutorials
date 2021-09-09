@@ -13,14 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class QueueListener {
-
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME_1)
     public void queue1Listen(Message message) {
-        log.info("queue1Listen接收到消息:" + message.toString());
+        log.info("queue1Listen接收到Message消息:" + message);
     }
 
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME_2)
     public void queue2Listen(Message message) {
-        log.info("queue2Listen接收到消息:" + message.toString());
+        log.info("queue2Listen接收到消息:" + message);
     }
 }
