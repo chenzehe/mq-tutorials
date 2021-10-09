@@ -3,7 +3,11 @@ package com.mq.tutorials.ch3.list65;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * 类 描 述：TODO
@@ -14,7 +18,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class QueueListener {
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME)
-    public void listen(String message) {
-        log.info("queueListen接收到Message消息:" + message);
+    public void listen(@Payload byte[] message, @Headers Map<String,Object> headers) {
+        log.info("queueListen接收到byte[]消息:" + new String(message));
+        log.info("queueListen接收到headers消息头:" + headers);
+
     }
 }
