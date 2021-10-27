@@ -1,7 +1,6 @@
-package com.mq.tutorials.ch3.list53;
+package com.mq.tutorials.ch3.list84;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -14,13 +13,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class QueueListener {
 
-    @RabbitListener(queues = RabbitConfig.QUEUE_NAME_1)
-    public void queue1Listen(String message) {
-        log.info("queue1Listen接收到消息:{}", message);
+    @RabbitListener(queues = RabbitConfig.QUEUE_NAME)
+    public void listen(String message) {
+        log.info("queueListen接收到消息:{}", message);
+        int i = 1 / 0;
     }
 
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME_2)
-    public void queue2Listen(String message) {
+    public void listen2(String message) {
         log.info("queue2Listen接收到消息:{}", message);
     }
 }

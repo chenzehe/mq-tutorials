@@ -1,9 +1,11 @@
 package com.mq.tutorials.ch2.list1;
 
 import com.rabbitmq.client.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public class Consumer {
 
     public static final String QUEUE_NAME = "helloQueue21";
@@ -24,15 +26,13 @@ public class Consumer {
                 @Override
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                     String message = new String(body, "UTF-8");
-                    System.out.println("rabbitmq received message, consumerTag = " + consumerTag + ", " +
-                            "properties = " + properties.toString() +", message = " + message);
+                    log.info("rabbitmq received message, consumerTag = {}, properties = {}, message = {}",consumerTag, properties, message);
                 }
             };
             channel.basicConsume(QUEUE_NAME, true, defaultConsumer);
             System.in.read();//等待控制台输入退出程序
         }catch (Exception e){
-            System.out.println("rabbitmq received message error!");
-            e.printStackTrace();
+            log.error("rabbitmq received message error!", e);
         }
         finally {
             if(channel !=null) channel.close();

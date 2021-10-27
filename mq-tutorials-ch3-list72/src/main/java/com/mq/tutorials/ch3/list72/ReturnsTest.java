@@ -1,19 +1,18 @@
 package com.mq.tutorials.ch3.list72;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.MessageProperties;
+import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
 
 /**
  * 类 描 述：TODO
  * 创 建 人：hljuczh@163.com
- * 创建时间：2021/10/9 20:16
+ * 创建时间：2021/10/9 20:13
  */
 @Slf4j
-public class ConfirmsSyncMultipleTest {
-    public static final String QUEUE_NAME = "helloQueue72-2";
+public class ReturnsTest {
+    public static final String QUEUE_NAME = "helloQueue72-4";
 
     public static void main(String[] argv) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
@@ -27,16 +26,17 @@ public class ConfirmsSyncMultipleTest {
             connection = factory.newConnection();
             channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            channel.confirmSelect();//开启confirm模式
+            channel.addReturnListener(new ReturnListener() {
+                @Override
+                public void handleReturn(int replyCode, String replyText, String exchange, String routingKey,
+                                         AMQP.BasicProperties properties, byte[] body) throws IOException {
+                    log.info("replyCode={},replyText={},exchange={},routingKey={},properties={},body={}",
+                            replyCode,replyText,exchange,routingKey,properties,new String(body));
+                }
+            });
             String message = "Hello World!";
-            for(int i = 0; i < 10; i++) {
-                channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
-            }
-            if(channel.waitForConfirms()){//发送多条消息后调用waitForConfirms()方法阻塞等待
-                log.info("sendMessage waitForConfirms is true : {}", message);
-            }else{
-                log.info("sendMessage waitForConfirms is false : {}", message);
-            }
+            channel.basicPublish("", "not-exist",true, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
+            System.in.read();//等待控制台输入退出程序
         }catch (Exception e){
             log.error("rabbitmq send message error!");
         }

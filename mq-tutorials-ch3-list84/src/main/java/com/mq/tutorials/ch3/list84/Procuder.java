@@ -1,9 +1,7 @@
-package com.mq.tutorials.ch3.list65;
+package com.mq.tutorials.ch3.list84;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +17,9 @@ public class Procuder {
     private AmqpTemplate amqpTemplate;
 
     public void sendMessage() {
-        String messageStr = "Hello World!";
-        MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setHeader("hello", "hello world!");
-        Message message = new Message(messageStr.getBytes(), messageProperties);
+        String message = "Hello World!";
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "hello", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("sendMessage finished : {}",  message);
     }
 
 }

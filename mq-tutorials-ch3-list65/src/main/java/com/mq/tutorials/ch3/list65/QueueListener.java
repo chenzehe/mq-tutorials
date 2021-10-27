@@ -19,8 +19,8 @@ import java.util.Map;
 public class QueueListener {
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME)
     public void listen(@Payload byte[] message, @Headers Map<String,Object> headers) {
-        log.info("queueListen接收到byte[]消息:" + new String(message));
-        log.info("queueListen接收到headers消息头:" + headers);
+        log.info("queueListen接收到byte[]消息: {}", new String(message));
+        log.info("queueListen接收到headers消息头: {}", headers);
 
     }
 }

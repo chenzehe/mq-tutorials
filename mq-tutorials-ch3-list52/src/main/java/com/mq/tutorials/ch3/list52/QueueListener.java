@@ -16,11 +16,11 @@ public class QueueListener {
 
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME_1)
     public void queue1Listen(String message) {
-        log.info("queue1Listen接收到消息:" + message);
+        log.info("queue1Listen接收到消息:{}", message);
     }
 
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME_2)
     public void queue2Listen(String message) {
-        log.info("queue2Listen接收到消息:" + message);
+        log.info("queue2Listen接收到消息:{}", message);
     }
 }

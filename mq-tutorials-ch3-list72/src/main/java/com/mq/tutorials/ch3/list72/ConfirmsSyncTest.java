@@ -6,6 +6,8 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Queue;
+
 /**
  * 类 描 述：TODO
  * 创 建 人：hljuczh@163.com
@@ -31,13 +33,12 @@ public class ConfirmsSyncTest {
             String message = "Hello World!";
             channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
             if(channel.waitForConfirms()){//调用waitForConfirms()方法阻塞等待
-                log.info("sendMessage waitForConfirms is true : " + message);
+                log.info("sendMessage waitForConfirms is true : {}", message);
             }else{
-                log.info("sendMessage waitForConfirms is false : " + message);
+                log.info("sendMessage waitForConfirms is false : {}", message);
             }
         }catch (Exception e){
             log.error("rabbitmq send message error!");
-            e.printStackTrace();
         }
         finally {
             if(channel !=null) channel.close();

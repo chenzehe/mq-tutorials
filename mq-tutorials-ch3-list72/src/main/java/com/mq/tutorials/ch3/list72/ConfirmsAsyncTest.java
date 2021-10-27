@@ -41,10 +41,8 @@ public class ConfirmsAsyncTest {
             for(int i = 0; i < 10; i++) {
                 channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
             }
-            System.in.read();//等待控制台输入退出程序
         }catch (Exception e){
             log.error("rabbitmq send message error!");
-            e.printStackTrace();
         }
         finally {
             if(channel !=null) channel.close();

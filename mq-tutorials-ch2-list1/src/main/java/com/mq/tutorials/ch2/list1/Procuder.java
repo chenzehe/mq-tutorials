@@ -1,7 +1,9 @@
 package com.mq.tutorials.ch2.list1;
 
 import com.rabbitmq.client.*;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Procuder {
 
     public static final String QUEUE_NAME = "helloQueue21";
@@ -20,10 +22,9 @@ public class Procuder {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             String message = "Hello World!";
             channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
-            System.out.println("rabbitmq send message '" + message + "'");
+            log.info("rabbitmq send message = {}", message);
         }catch (Exception e){
-            System.out.println("rabbitmq send message error!");
-            e.printStackTrace();
+            log.error("rabbitmq send message error!", e);
         }
         finally {
             if(channel !=null) channel.close();

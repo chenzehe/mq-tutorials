@@ -16,6 +16,6 @@ import org.springframework.stereotype.Component;
 public class QueueListener {
     @RabbitHandler
     public void listen(String message) {
-        log.info("QueueListener接收到消息:" + message);
+        log.info("QueueListener接收到消息: {}", message);
     }
 }

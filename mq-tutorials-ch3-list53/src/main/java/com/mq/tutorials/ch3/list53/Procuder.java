@@ -20,7 +20,7 @@ public class Procuder {
         String message = "Hello World!";
         String routingKey = "lazy";
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, routingKey, message);
-        log.info("sendMessage finished : " + message);
+        log.info("sendMessage finished : {}", message);
     }
 
 }

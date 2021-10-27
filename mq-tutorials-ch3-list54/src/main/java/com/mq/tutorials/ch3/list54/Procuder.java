@@ -25,9 +25,9 @@ public class Procuder {
         messageProperties.setHeader("language", "erlang");
         messageProperties.setHeader("hello", "hello world!");
         Message message = new Message(messageStr.getBytes(), messageProperties);
-        log.info("sendMessage start : " + message);
+        log.info("sendMessage start : {}", message);
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, null, message);
-        log.info("sendMessage finished : " + message);
+        log.info("sendMessage finished : {}", message);
     }
 
 }
