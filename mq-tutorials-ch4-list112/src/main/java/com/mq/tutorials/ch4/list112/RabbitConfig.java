@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch4.list111;
+package com.mq.tutorials.ch4.list112;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -18,10 +18,12 @@ import java.util.Map;
  */
 @Configuration
 public class RabbitConfig {
-    public static final String WORK_QUEUE_NAME = "work_queue4111";
-    public static final String RETRY_QUEUE_NAME = "retry_queue4111";
-    public static final String WORK_EXCHANGE_NAME = "work_exchange4111";
-    public static final String RETRY_EXCHANGE_NAME = "retry_exchange4111";
+    public static final String WORK_QUEUE_NAME = "work_queue4112";
+    public static final String RETRY_QUEUE_NAME = "retry_queue4112";
+    public static final String WORK_EXCHANGE_NAME = "work_exchange4112";
+    public static final String RETRY_EXCHANGE_NAME = "retry_exchange4112";
+    public static final String TTL_QUEUE_NAME = "ttl_queue4112";
+
 
 
     @Bean(WORK_QUEUE_NAME)
@@ -29,7 +31,15 @@ public class RabbitConfig {
         Map<String, Object> args = new HashMap<String, Object>();
         args.put("x-dead-letter-exchange", RETRY_EXCHANGE_NAME);
         args.put("x-dead-letter-routing-key", "retry-routing-key");
+        args.put("x-message-ttl", 10000);
         return new Queue(WORK_QUEUE_NAME, true, false, false, args);
+    }
+
+    @Bean(TTL_QUEUE_NAME)
+    public Queue ttlQueue() {
+        Map<String, Object> args = new HashMap<String, Object>();
+        args.put("x-expires", 100000);
+        return new Queue(TTL_QUEUE_NAME, true, false, false, args);
     }
 
     @Bean(RETRY_QUEUE_NAME)
