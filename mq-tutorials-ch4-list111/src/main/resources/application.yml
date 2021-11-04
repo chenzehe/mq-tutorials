@@ -1,5 +1,5 @@
 server:
-  port: 8899
+  port: 8080
 spring:
   rabbitmq:
     host: 127.0.0.1
@@ -10,9 +10,9 @@ spring:
       simple:
         concurrency: 2
         max-concurrency: 5
-        acknowledge-mode: auto
+        acknowledge-mode: manual
         retry:
-          enabled: false             #开启spring amqp retry重试
+          enabled: false              #开启spring amqp retry重试
           max-attempts: 5           #重试次数
           multiplier: 2             #重试时间间隔因子，下一次重试时间 = 此次间隔时间 * multiplier
           initial-interval: 2000    #初时重试时间，默认1000，即1S

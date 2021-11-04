@@ -19,8 +19,13 @@ public class QueueListener {
         int i = 1 / 0;
     }
 
-    @RabbitListener(queues = RabbitConfig.QUEUE_NAME_2)
-    public void listen2(String message) {
+    @RabbitListener(queues = RabbitConfig.QUEUE_NAME_2, concurrency = "2-3")
+    public void listen2(String message) throws Exception{
         log.info("queue2Listen接收到消息:{}", message);
+    }
+
+    @RabbitListener(queues = RabbitConfig.QUEUE_NAME_2, concurrency = "1")
+    public void listen22(String message) throws Exception{
+        log.info("queue22Listen接收到消息:{}", message);
     }
 }

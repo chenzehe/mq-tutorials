@@ -36,13 +36,13 @@ public class RabbitConfig {
 
     @Bean
     public Binding bindingQueue(@Qualifier(QUEUE_NAME) Queue queue, @Qualifier(EXCHANGE_NAME) TopicExchange exchange){
-        String bindingKey = "*";
+        String bindingKey = "queue1";
         return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
     }
 
     @Bean
     public Binding bindingQueue2(@Qualifier(QUEUE_NAME_2) Queue queue, @Qualifier(EXCHANGE_NAME) TopicExchange exchange){
-        String bindingKey = "*";
+        String bindingKey = "queue2";
         return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
     }
 }

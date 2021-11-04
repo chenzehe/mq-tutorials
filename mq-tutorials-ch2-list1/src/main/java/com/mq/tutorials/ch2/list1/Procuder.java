@@ -21,7 +21,9 @@ public class Procuder {
             channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
+            for(int i=0;i<1000;i++) {
+                channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
+            }
             log.info("rabbitmq send message = {}", message);
         }catch (Exception e){
             log.error("rabbitmq send message error!", e);

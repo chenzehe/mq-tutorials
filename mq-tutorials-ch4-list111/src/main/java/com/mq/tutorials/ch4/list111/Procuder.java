@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list84;
+package com.mq.tutorials.ch4.list111;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -18,7 +18,7 @@ public class Procuder {
 
     public void sendMessage() {
         String message = "Hello World!";
-        this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "queue1", message);
+        this.amqpTemplate.convertAndSend(RabbitConfig.WORK_EXCHANGE_NAME, "work-routing-key", message);
         log.info("sendMessage finished : {}", message);
     }
 

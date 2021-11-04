@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
  * 创建时间：2021/7/8 20:47
  */
 @Component
-@RabbitListener(queues = RabbitConfig.QUEUE_NAME)
 @Slf4j
 public class QueueListener {
-    @RabbitHandler
+    @RabbitListener(queues = RabbitConfig.QUEUE_NAME, concurrency = "10" )
     public void listen(String message) {
         log.info("QueueListener接收到消息: {}", message);
     }
