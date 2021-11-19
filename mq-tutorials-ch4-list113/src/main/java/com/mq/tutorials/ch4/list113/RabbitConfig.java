@@ -19,25 +19,25 @@ import java.util.Map;
 @Configuration
 public class RabbitConfig {
     public static final String WORK_QUEUE_NAME = "work_queue4113";
-    public static final String RETRY_QUEUE_NAME = "retry_queue4113";
+    public static final String DELAYED_QUEUE_NAME = "delayed_queue4113";
     public static final String WORK_EXCHANGE_NAME = "work_exchange4113";
-    public static final String RETRY_EXCHANGE_NAME = "retry_exchange4113";
+    public static final String DELAYED_EXCHANGE_NAME = "delayed_exchange4113";
 
 
 
     @Bean(WORK_QUEUE_NAME)
     public Queue workQueue(){
         Map<String, Object> args = new HashMap<String, Object>();
-        args.put("x-dead-letter-exchange", RETRY_EXCHANGE_NAME);
-        args.put("x-dead-letter-routing-key", "retry-routing-key");
+        args.put("x-dead-letter-exchange", DELAYED_EXCHANGE_NAME);
+        args.put("x-dead-letter-routing-key", "delayed-routing-key");
         args.put("x-max-length", 5);
         args.put("x-max-length-bytes", 10);
         return new Queue(WORK_QUEUE_NAME, true, false, false, args);
     }
 
-    @Bean(RETRY_QUEUE_NAME)
-    public Queue retryQueue(){
-        return new Queue(RETRY_QUEUE_NAME);
+    @Bean(DELAYED_QUEUE_NAME)
+    public Queue delayedQueue(){
+        return new Queue(DELAYED_QUEUE_NAME);
     }
 
     @Bean(WORK_EXCHANGE_NAME)
@@ -45,9 +45,9 @@ public class RabbitConfig {
         return new TopicExchange(WORK_EXCHANGE_NAME);
     }
 
-    @Bean(RETRY_EXCHANGE_NAME)
-    public TopicExchange retryExchange(){
-        return new TopicExchange(RETRY_EXCHANGE_NAME);
+    @Bean(DELAYED_EXCHANGE_NAME)
+    public TopicExchange delayedExchange(){
+        return new TopicExchange(DELAYED_EXCHANGE_NAME);
     }
 
     @Bean
@@ -57,8 +57,8 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Binding bindingRetryQueue(@Qualifier(RETRY_QUEUE_NAME) Queue queue, @Qualifier(RETRY_EXCHANGE_NAME) TopicExchange exchange){
-        String bindingKey = "retry-routing-key";
+    public Binding bindingDelayedQueue(@Qualifier(DELAYED_QUEUE_NAME) Queue queue, @Qualifier(DELAYED_EXCHANGE_NAME) TopicExchange exchange){
+        String bindingKey = "delayed-routing-key";
         return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
     }
 }

@@ -1,11 +1,9 @@
 package com.mq.tutorials.ch4.list111;
 
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.impl.AMQImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +27,9 @@ public class QueueListener {
         }
     }
 
-    @RabbitListener(queues = RabbitConfig.RETRY_QUEUE_NAME)
+    @RabbitListener(queues = RabbitConfig.DELAYED_QUEUE_NAME)
     public void listen2(String message) throws Exception{
-        log.info("retry queue lisener 接收到消息:{}", message);
+        log.info("delayed queue lisener 接收到消息:{}", message);
     }
 
 }
