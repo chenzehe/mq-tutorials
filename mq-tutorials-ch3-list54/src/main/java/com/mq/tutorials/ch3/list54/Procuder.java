@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +31,7 @@ public class Procuder {
         messageProperties.setHeader("mq", "rabbitmq");
         messageProperties.setHeader("language", "erlang");
         messageProperties.setHeader("hello", "hello world!");
+        messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
         Message message = new Message(messageStr.getBytes(), messageProperties);
         log.info("sendMessage start : {}", message);
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, null, message);
