@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch4.list42;
+package com.mq.toturials.ch4.list71;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -24,11 +24,13 @@ public class Procuder {
 
     @Test
     public void sendMessage() {
-        String messageStr = "Hello World!";
+        Integer priority = 5;
+        String messageStr = "priority message, priority = " + priority;
         MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setHeader("x-delay", 5000);
+        messageProperties.setContentType(MessageProperties.CONTENT_TYPE_JSON);
+        messageProperties.setPriority(priority);
         Message message = new Message(messageStr.getBytes(), messageProperties);
-        this.amqpTemplate.convertAndSend(RabbitConfig.DELAYED_EXCHANGE_NAME, "delayed-routing-key", message);
+        this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "key", message);
         log.info("sendMessage finished : {}", message);
     }
 

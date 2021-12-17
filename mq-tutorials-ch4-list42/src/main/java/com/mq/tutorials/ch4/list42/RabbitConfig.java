@@ -1,16 +1,12 @@
 package com.mq.tutorials.ch4.list42;
 
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.core.AcknowledgeMode;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 类 描 述：TODO
@@ -19,31 +15,26 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitConfig {
-    public static final String QUEUE_NAME = "queue442";
-    public static final String EXCHANGE_NAME = "exchange442";
+    public static final String DELAYED_QUEUE_NAME = "delayed_queue442";
+    public static final String DELAYED_EXCHANGE_NAME = "delayed_exchange442";
 
-    @Bean(QUEUE_NAME)
-    public Queue queue(){
-        return new Queue(QUEUE_NAME);
+    @Bean
+    public CustomExchange delayedExchange() {
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-delayed-type", "direct");
+        return new CustomExchange(DELAYED_EXCHANGE_NAME, "x-delayed-message", true, false, args);
     }
 
-
-    @Bean(EXCHANGE_NAME)
-    public TopicExchange exchange(){
-        return new TopicExchange(EXCHANGE_NAME);
+    @Bean(DELAYED_QUEUE_NAME)
+    public Queue delayedQueue(){
+        return new Queue(DELAYED_QUEUE_NAME);
     }
 
     @Bean
-    public Binding bindingQueue(@Qualifier(QUEUE_NAME) Queue queue, @Qualifier(EXCHANGE_NAME) TopicExchange exchange){
-        String bindingKey = "key";
-        return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
+    public Binding bindingDelayedQueue(@Qualifier(DELAYED_QUEUE_NAME) Queue queue, @Qualifier(DELAYED_EXCHANGE_NAME) CustomExchange exchange){
+        String bindingKey = "delayed-routing-key";
+        return BindingBuilder.bind(queue).to(exchange).with(bindingKey).noargs();
     }
 
-    @Bean
-    public RabbitTemplate rabbitTemplateTransacted(ConnectionFactory connectionFactory) {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory);
-        template.setChannelTransacted(true);
-        return template;
-    }
 }
 

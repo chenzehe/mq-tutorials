@@ -23,15 +23,16 @@
         <module>mq-tutorials-ch3-list54</module>
         <module>mq-tutorials-ch3-list65</module>
         <module>mq-tutorials-resources</module>
-        <module>mq-tutorials-ch3-list72</module>
-        <module>mq-tutorials-ch3-list84</module>
-        <module>mq-tutorials-ch4-list111</module>
-        <module>mq-tutorials-ch4-list112</module>
-        <module>mq-tutorials-ch4-list113</module>
-        <module>mq-tutorials-ch4-list12</module>
-        <module>mq-tutorials-ch3-list86</module>
-        <module>mq-tutorials-ch4-list41</module>
+        <module>mq-tutorials-ch4-list1</module>
+        <module>mq-tutorials-ch4-list23</module>
+        <module>mq-tutorials-ch4-list411</module>
+        <module>mq-tutorials-ch4-list412</module>
+        <module>mq-tutorials-ch4-list413</module>
         <module>mq-tutorials-ch4-list42</module>
+        <module>mq-tutorials-ch4-list25</module>
+        <module>mq-tutorials-ch4-list33</module>
+        <module>mq-tutorials-ch4-list62</module>
+        <module>mq-tutorials-ch4-list71</module>
     </modules>
 
     <dependencies>

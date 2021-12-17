@@ -1,6 +1,7 @@
-package com.mq.tutorials.ch4.list42;
+package com.mq.tutorials.ch4.list412;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Component;
 public class QueueListener {
 
     @RabbitListener(queues = RabbitConfig.DELAYED_QUEUE_NAME)
-    public void listen(String message) throws Exception{
-        log.info("delayed queue lisener 接收到消息:{}", message);
+    public void listen(Message message) throws Exception{
+        log.info("delayed queue lisener 接收到消息:{}", new String(message.getBody()));
     }
 
 }

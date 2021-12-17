@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch4.list42;
+package com.mq.tutorials.ch4.list412;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -24,11 +24,19 @@ public class Procuder {
 
     @Test
     public void sendMessage() {
+        String message = "Hello World!";
+        this.amqpTemplate.convertAndSend(RabbitConfig.WORK_EXCHANGE_NAME, "work-routing-key", message);
+        log.info("sendMessage finished : {}", message);
+    }
+
+    @Test
+    public void sendTTLMessage() {
         String messageStr = "Hello World!";
         MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setHeader("x-delay", 5000);
+        messageProperties.setExpiration("10000");
         Message message = new Message(messageStr.getBytes(), messageProperties);
-        this.amqpTemplate.convertAndSend(RabbitConfig.DELAYED_EXCHANGE_NAME, "delayed-routing-key", message);
+        log.info("sendMessage start : {}", message);
+        this.amqpTemplate.convertAndSend(RabbitConfig.WORK_EXCHANGE_NAME, "work-routing-key", message);
         log.info("sendMessage finished : {}", message);
     }
 
