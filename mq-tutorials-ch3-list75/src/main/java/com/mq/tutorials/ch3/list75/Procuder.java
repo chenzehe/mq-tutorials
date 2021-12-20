@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list65;
+package com.mq.tutorials.ch3.list75;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -8,7 +8,6 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**

@@ -1,7 +1,6 @@
-package com.mq.tutorials.ch3.list65;
+package com.mq.tutorials.ch3.list75;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;

@@ -1,12 +1,9 @@
-package com.mq.tutorials.ch3.list65;
+package com.mq.tutorials.ch3.list75;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 类 描 述：TODO

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mq-tutorials-ch3-list65</artifactId>
+    <artifactId>mq-tutorials-ch3-list75</artifactId>
 
     <dependencies>
         <dependency>
