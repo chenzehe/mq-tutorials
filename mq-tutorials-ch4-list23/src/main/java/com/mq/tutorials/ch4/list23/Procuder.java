@@ -24,7 +24,7 @@ public class Procuder {
     public void sendMessage() {
         String message = "Hello World!";
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "queue1", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

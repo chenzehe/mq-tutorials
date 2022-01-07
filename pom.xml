@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
     <name>mq-tutorials</name>
     <modules>
-        <module>mq-tutorials-ch2-list2</module>
+        <module>mq-tutorials-ch2-list21</module>
         <module>mq-tutorials-ch2-list1</module>
         <module>mq-tutorials-ch3-list5</module>
         <module>mq-tutorials-ch3-list52</module>
@@ -33,6 +33,9 @@
         <module>mq-tutorials-ch4-list33</module>
         <module>mq-tutorials-ch4-list62</module>
         <module>mq-tutorials-ch4-list71</module>
+        <module>mq-tutorials-ch2-list22</module>
+        <module>mq-tutorials-test</module>
+        <module>mq-tutorials-ch4-list91</module>
     </modules>
 
     <dependencies>

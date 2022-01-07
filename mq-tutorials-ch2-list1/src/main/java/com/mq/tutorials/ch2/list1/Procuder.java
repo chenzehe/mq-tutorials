@@ -19,14 +19,14 @@ public class Procuder {
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "Hello World!";
+            channel.queueDeclare(QUEUE_NAME, true, false, false, null);
             for(int i=0;i<1000;i++) {
+                String message = "Hello World " + i;
                 channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
+                log.info("发送消息 = {}", message);
             }
-            log.info("rabbitmq send message = {}", message);
         }catch (Exception e){
-            log.error("rabbitmq send message error!", e);
+            log.error("发送消息异常!", e);
         }
         finally {
             if(channel !=null) channel.close();

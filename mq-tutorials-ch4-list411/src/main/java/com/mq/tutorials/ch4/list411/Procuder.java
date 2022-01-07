@@ -24,7 +24,7 @@ public class Procuder {
     public void sendMessage() {
         String message = "Hello World!";
         this.amqpTemplate.convertAndSend(RabbitConfig.WORK_EXCHANGE_NAME, "work-routing-key", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

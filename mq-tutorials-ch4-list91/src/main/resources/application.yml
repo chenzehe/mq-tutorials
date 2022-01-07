@@ -1,0 +1,12 @@
+server:
+  port: 8899
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: xmall
+    password: yiguokeji01rabbit
+    listener:
+      simple:
+        acknowledge-mode: auto
+        prefetch: 3

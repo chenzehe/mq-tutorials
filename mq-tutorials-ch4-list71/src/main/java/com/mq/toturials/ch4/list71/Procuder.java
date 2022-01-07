@@ -31,7 +31,7 @@ public class Procuder {
         messageProperties.setPriority(priority);
         Message message = new Message(messageStr.getBytes(), messageProperties);
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "key", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

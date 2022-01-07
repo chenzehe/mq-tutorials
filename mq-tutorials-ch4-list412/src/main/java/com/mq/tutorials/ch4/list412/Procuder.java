@@ -26,18 +26,18 @@ public class Procuder {
     public void sendMessage() {
         String message = "Hello World!";
         this.amqpTemplate.convertAndSend(RabbitConfig.WORK_EXCHANGE_NAME, "work-routing-key", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
     @Test
     public void sendTTLMessage() {
         String messageStr = "Hello World!";
         MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setExpiration("10000");
+        messageProperties.setExpiration("0");
         Message message = new Message(messageStr.getBytes(), messageProperties);
-        log.info("sendMessage start : {}", message);
+        log.info("start : {}", message);
         this.amqpTemplate.convertAndSend(RabbitConfig.WORK_EXCHANGE_NAME, "work-routing-key", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

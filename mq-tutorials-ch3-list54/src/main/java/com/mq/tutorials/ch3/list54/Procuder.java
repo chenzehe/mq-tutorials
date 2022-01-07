@@ -33,9 +33,9 @@ public class Procuder {
         messageProperties.setHeader("hello", "hello world!");
         messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
         Message message = new Message(messageStr.getBytes(), messageProperties);
-        log.info("sendMessage start : {}", message);
+        log.info("start : {}", message);
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, null, message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

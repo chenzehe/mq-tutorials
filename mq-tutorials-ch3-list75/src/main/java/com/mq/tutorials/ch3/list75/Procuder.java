@@ -29,7 +29,7 @@ public class Procuder {
         messageProperties.setHeader("hello", "hello world!");
         Message message = new Message(messageStr.getBytes(), messageProperties);
         this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "hello", message);
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

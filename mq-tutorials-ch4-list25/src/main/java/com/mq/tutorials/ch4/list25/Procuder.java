@@ -26,7 +26,7 @@ public class Procuder {
         for(int i = 0; i<100; i++) {
             this.amqpTemplate.convertAndSend(RabbitConfig.EXCHANGE_NAME, "key", message + i);
         }
-        log.info("sendMessage finished : {}", message);
+        log.info("消息发送完成: {}", message);
     }
 
 }

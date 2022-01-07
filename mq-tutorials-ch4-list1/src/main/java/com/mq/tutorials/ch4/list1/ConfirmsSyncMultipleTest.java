@@ -33,9 +33,9 @@ public class ConfirmsSyncMultipleTest {
                 channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
             }
             if(channel.waitForConfirms()){//发送多条消息后调用waitForConfirms()方法阻塞等待
-                log.info("sendMessage waitForConfirms is true : {}", message);
+                log.info("waitForConfirms is true : {}", message);
             }else{
-                log.info("sendMessage waitForConfirms is false : {}", message);
+                log.info("waitForConfirms is false : {}", message);
             }
         }catch (Exception e){
             log.error("rabbitmq send message error!");

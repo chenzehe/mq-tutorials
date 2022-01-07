@@ -31,7 +31,7 @@ public class RabbitConfig {
         Map<String, Object> args = new HashMap<String, Object>();
         args.put("x-dead-letter-exchange", DELAYED_EXCHANGE_NAME);
         args.put("x-dead-letter-routing-key", "delayed-routing-key");
-        args.put("x-message-ttl", 10000);
+        //args.put("x-message-ttl", 4294967297L);
         return new Queue(WORK_QUEUE_NAME, true, false, false, args);
     }
 
