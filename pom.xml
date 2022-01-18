@@ -35,7 +35,8 @@
         <module>mq-tutorials-ch4-list71</module>
         <module>mq-tutorials-ch2-list22</module>
         <module>mq-tutorials-test</module>
-        <module>mq-tutorials-ch4-list91</module>
+        <module>mq-tutorials-ch4-list101</module>
+        <module>mq-tutorials-ch4-list93</module>
     </modules>
 
     <dependencies>
