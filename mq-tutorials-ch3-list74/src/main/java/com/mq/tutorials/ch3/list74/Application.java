@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list75;
+package com.mq.tutorials.ch3.list74;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
