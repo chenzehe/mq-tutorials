@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list74;
+package com.mq.tutorials.ch3.list75;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
