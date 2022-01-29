@@ -1,4 +1,4 @@
-package com.mq.tutorials.ch3.list75;
+package com.mq.tutorials.ch3.list94;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitConfig {
-    public static final String QUEUE_NAME = "queue374";
-    public static final String EXCHANGE_NAME = "exchange374";
+    public static final String QUEUE_NAME = "queue394";
+    public static final String EXCHANGE_NAME = "exchange394";
 
     @Bean(QUEUE_NAME)
     public Queue queue(){
