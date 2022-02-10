@@ -38,6 +38,7 @@
         <module>mq-tutorials-ch4-list101</module>
         <module>mq-tutorials-ch4-list93</module>
         <module>mq-tutorials-ch3-list93</module>
+        <module>mq-tutorials-ch3-list95</module>
     </modules>
 
     <dependencies>
