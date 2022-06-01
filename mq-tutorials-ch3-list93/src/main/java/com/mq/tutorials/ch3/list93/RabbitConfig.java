@@ -24,12 +24,19 @@ import java.util.UUID;
 @Configuration
 @Slf4j
 public class RabbitConfig {
-    public static final String QUEUE_NAME = "queue393";
+    public static final String QUEUE_NAME_393 = "queue393";
+    public static final String QUEUE_NAME_394 = "queue394";
+    public static final String[] QUEUES_NAME = {QUEUE_NAME_393,QUEUE_NAME_394};
     public static final String EXCHANGE_NAME = "exchange393";
 
-    @Bean(QUEUE_NAME)
-    public Queue queue(){
-        return new Queue(QUEUE_NAME);
+    @Bean(QUEUE_NAME_393)
+    public Queue queue393(){
+        return new Queue(QUEUE_NAME_393);
+    }
+
+    @Bean(QUEUE_NAME_394)
+    public Queue queue394(){
+        return new Queue(QUEUE_NAME_394);
     }
 
     @Bean(EXCHANGE_NAME)
@@ -38,38 +45,80 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Binding bindingQueue(@Qualifier(QUEUE_NAME) Queue queue, @Qualifier(EXCHANGE_NAME) TopicExchange exchange){
+    public Binding bindingQueue393(@Qualifier(QUEUE_NAME_393) Queue queue, @Qualifier(EXCHANGE_NAME) TopicExchange exchange){
         String bindingKey = "*";
         return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
     }
 
     @Bean
-    public SimpleMessageListenerContainer messageContainer(ConnectionFactory connectionFactory) {
+    public Binding bindingQueue394(@Qualifier(QUEUE_NAME_394) Queue queue, @Qualifier(EXCHANGE_NAME) TopicExchange exchange){
+        String bindingKey = "*";
+        return BindingBuilder.bind(queue).to(exchange).with(bindingKey);
+    }
+
+    @Bean
+    public SimpleMessageListenerContainer messageContainer393(ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
-        container.setQueueNames(QUEUE_NAME);
+        container.setQueueNames(QUEUE_NAME_393);
         //指定消息消费者
-        /**
         container.setMessageListener(new ChannelAwareMessageListener() {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
-                String msg = new String(message.getBody());
-                log.info("接收到消息: {}", msg);
+                log.info("接收到消息: {}", message);
+                Thread.sleep(5000L);
+                log.info("结束消息: {}", message);
             }
-        });**/
+        });
 
         /**
         MessageListenerAdapter adapter = new MessageListenerAdapter(new QueueListener());
         adapter.setDefaultListenerMethod("listen");
-         **/
+        **/
 
+        /**
         MessageListenerAdapter adapter = new MessageListenerAdapter(new QueueListener());
         Map<String, String> queueOrTagToMethodName = new HashMap<>();
-        queueOrTagToMethodName.put("queue1", "method1");
-        queueOrTagToMethodName.put("queue393", "method393");
+        queueOrTagToMethodName.put("queue394", "method1");
+        queueOrTagToMethodName.put("queue393", "method1");
         adapter.setQueueOrTagToMethodName(queueOrTagToMethodName);
-
         container.setMessageListener(adapter);
+         **/
+
+
         return container;
     }
+
+    @Bean
+    public SimpleMessageListenerContainer messageContainer394(ConnectionFactory connectionFactory) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
+        container.setQueueNames(QUEUE_NAME_394);
+        //指定消息消费者
+        container.setMessageListener(new ChannelAwareMessageListener() {
+            @Override
+            public void onMessage(Message message, Channel channel) throws Exception {
+                log.info("接收到消息: {}", message);
+                Thread.sleep(5000L);
+                log.info("结束消息: {}", message);
+            }
+        });
+
+        /**
+         MessageListenerAdapter adapter = new MessageListenerAdapter(new QueueListener());
+         adapter.setDefaultListenerMethod("listen");
+         **/
+
+        /**
+         MessageListenerAdapter adapter = new MessageListenerAdapter(new QueueListener());
+         Map<String, String> queueOrTagToMethodName = new HashMap<>();
+         queueOrTagToMethodName.put("queue394", "method1");
+         queueOrTagToMethodName.put("queue393", "method1");
+         adapter.setQueueOrTagToMethodName(queueOrTagToMethodName);
+         container.setMessageListener(adapter);
+         **/
+
+
+        return container;
+    }
+
 }
 
