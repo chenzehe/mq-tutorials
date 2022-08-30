@@ -41,7 +41,7 @@
         <module>mq-tutorials-ch3-list95</module>
         <module>mq-tutorials-ch3-list103</module>
     </modules>
-
+    <!-- test1 -->
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
